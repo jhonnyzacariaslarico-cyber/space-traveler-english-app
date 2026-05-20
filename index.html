@@ -553,28 +553,43 @@ subjects.forEach(subject=>{
 
 function openLesson(subject, lesson){
 
-    document.getElementById("modal").style.display = "block";
+/* CHEMISTRY LESSON 1 PDF */
 
-    document.getElementById("modalTitle").innerHTML =
-    `${subject} — LESSON ${lesson}`;
+if(subject === "CHEMISTRY" && lesson === 1){
 
-    document.getElementById("modalContent").innerHTML = `
+window.open(
+"Propiedades-y-Clasificación-de-la-materia.pdf",
+"_blank"
+);
 
-    🚀 Welcome Space Traveler...
+return;
 
-    <br><br>
+}
 
-    You are now entering Lesson ${lesson} of ${subject}.
+/* NORMAL LESSONS */
 
-    <br><br>
+document.getElementById("modal").style.display = "block";
 
-    This knowledge will help you survive among advanced civilizations,
-    interstellar systems and artificial intelligence entities.
+document.getElementById("modalTitle").innerHTML =
+`${subject} — LESSON ${lesson}`;
 
-    <br><br>
+document.getElementById("modalContent").innerHTML = `
 
-    🌌 Knowledge is the ultimate cosmic power.
-    `;
+🚀 Welcome Space Traveler...
+
+<br><br>
+
+You are now entering Lesson ${lesson} of ${subject}.
+
+<br><br>
+
+This knowledge will help you survive among advanced civilizations,
+interstellar systems and artificial intelligence entities.
+
+<br><br>
+
+🌌 Knowledge is the ultimate cosmic power.
+`;
 }
 
 /* CLOSE */
