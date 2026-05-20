@@ -1,16 +1,635 @@
+<!-- ========================= -->
+<!-- SPACE TRAVELER GENERAL -->
+<!-- ULTRA GALACTIC VERSION -->
+<!-- ========================= -->
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Space Traveler English</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SPACE TRAVELER GENERAL</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:
+    radial-gradient(circle at top, #0b1d3a 0%, #02040a 50%, black 100%);
+    overflow-x:hidden;
+    color:white;
+    min-height:100vh;
+}
+
+/* STARS */
+
+.stars{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    z-index:-5;
+    overflow:hidden;
+}
+
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+    border-radius:50%;
+    animation:twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle{
+    from{
+        opacity:0.2;
+    }
+    to{
+        opacity:1;
+    }
+}
+
+/* COMET */
+
+.comet{
+    position:fixed;
+    top:100px;
+    left:-300px;
+    width:250px;
+    height:3px;
+    background:linear-gradient(to right, white, cyan, transparent);
+    transform:rotate(-20deg);
+    box-shadow:0 0 20px cyan;
+    animation:cometMove 12s linear infinite;
+    z-index:-4;
+}
+
+@keyframes cometMove{
+    from{
+        transform:translateX(0) rotate(-20deg);
+    }
+
+    to{
+        transform:translateX(2200px) rotate(-20deg);
+    }
+}
+
+/* ORBITS */
+
+.orbit{
+    position:fixed;
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:50%;
+    z-index:-4;
+}
+
+.orbit1{
+    width:500px;
+    height:500px;
+    top:100px;
+    left:-150px;
+}
+
+.orbit2{
+    width:700px;
+    height:700px;
+    bottom:-250px;
+    right:-200px;
+}
+
+.planet{
+    position:absolute;
+    width:20px;
+    height:20px;
+    background:cyan;
+    border-radius:50%;
+    box-shadow:0 0 20px cyan;
+    animation:rotatePlanet 10s linear infinite;
+}
+
+@keyframes rotatePlanet{
+
+    from{
+        transform:rotate(0deg)
+        translateX(250px)
+        rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg)
+        translateX(250px)
+        rotate(-360deg);
+    }
+}
+
+/* NAVBAR */
+
+nav{
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:25px 50px;
+    position:sticky;
+    top:0;
+    backdrop-filter:blur(12px);
+    background:rgba(0,0,0,0.3);
+    border-bottom:1px solid rgba(0,255,255,0.2);
+    z-index:1000;
+}
+
+.logo{
+    font-size:34px;
+    color:cyan;
+    font-weight:bold;
+    letter-spacing:3px;
+    text-shadow:0 0 20px cyan;
+}
+
+button{
+    padding:14px 28px;
+    border:none;
+    border-radius:30px;
+    background:linear-gradient(45deg, cyan, #00ff99);
+    color:black;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+    box-shadow:0 0 15px cyan;
+}
+
+button:hover{
+    transform:scale(1.08);
+    box-shadow:0 0 35px cyan;
+}
+
+/* HERO */
+
+.hero{
+    width:100%;
+    min-height:80vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:40px;
+}
+
+.hero h1{
+    font-size:85px;
+    color:cyan;
+    text-shadow:0 0 30px cyan;
+    margin-bottom:20px;
+}
+
+.hero p{
+    max-width:900px;
+    font-size:24px;
+    line-height:1.7;
+    color:#ddd;
+    margin-bottom:40px;
+}
+
+/* COURSES */
+
+.subjects{
+    width:100%;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+    gap:35px;
+    padding:50px;
+}
+
+.card{
+    position:relative;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(0,255,255,0.2);
+    border-radius:25px;
+    padding:30px;
+    overflow:hidden;
+    backdrop-filter:blur(10px);
+    transition:0.4s;
+    box-shadow:0 0 20px rgba(0,255,255,0.08);
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 40px cyan;
+}
+
+.card h2{
+    color:cyan;
+    margin-bottom:15px;
+    font-size:32px;
+}
+
+.card p{
+    color:#ccc;
+    line-height:1.6;
+    margin-bottom:20px;
+}
+
+.space-icon{
+    position:absolute;
+    top:20px;
+    right:20px;
+    font-size:50px;
+    opacity:0.8;
+    animation:floatShip 4s ease-in-out infinite;
+}
+
+@keyframes floatShip{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+}
+
+/* LESSONS */
+
+.lesson-container{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:10px;
+}
+
+.lesson-btn{
+    padding:10px;
+    border-radius:12px;
+    border:none;
+    background:#07151f;
+    color:cyan;
+    border:1px solid cyan;
+    cursor:pointer;
+    transition:0.3s;
+    font-size:12px;
+}
+
+.lesson-btn:hover{
+    background:cyan;
+    color:black;
+    transform:scale(1.1);
+}
+
+/* MODAL */
+
+.modal{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:90%;
+    max-width:700px;
+    background:#04131f;
+    border:2px solid cyan;
+    border-radius:25px;
+    padding:40px;
+    z-index:9999;
+    display:none;
+    box-shadow:0 0 50px cyan;
+}
+
+.modal h2{
+    color:cyan;
+    margin-bottom:20px;
+    font-size:38px;
+}
+
+.modal p{
+    color:#ddd;
+    line-height:1.8;
+    font-size:20px;
+    margin-bottom:20px;
+}
+
+.close-btn{
+    background:red;
+    color:white;
+}
+
+footer{
+    text-align:center;
+    padding:50px;
+    color:#777;
+}
+
+</style>
 </head>
 
-<body style="background:black;color:cyan;font-family:Arial;text-align:center;padding-top:100px;">
+<body>
 
-<h1>🚀 SPACE TRAVELER ENGLISH</h1>
+<!-- STARS -->
 
-<p>Learn English beyond time.</p>
+<div class="stars" id="stars"></div>
 
-<p>Welcome traveler...</p>
+<!-- COMET -->
+
+<div class="comet"></div>
+
+<!-- ORBITS -->
+
+<div class="orbit orbit1">
+    <div class="planet"></div>
+</div>
+
+<div class="orbit orbit2">
+    <div class="planet"></div>
+</div>
+
+<!-- NAVBAR -->
+
+<nav>
+
+<div class="logo">
+🚀 SPACE TRAVELER GENERAL
+</div>
+
+<button onclick="startMission()">
+START SPACE MISSION
+</button>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<h1>
+LEARN ACROSS THE UNIVERSE
+</h1>
+
+<p>
+You are a temporal traveler navigating through galaxies,
+quantum civilizations and artificial intelligence systems.
+Master universal knowledge to survive beyond Earth.
+</p>
+
+</section>
+
+<!-- COURSES -->
+
+<section class="subjects" id="subjects"></section>
+
+<!-- MODAL -->
+
+<div class="modal" id="modal">
+
+<h2 id="modalTitle"></h2>
+
+<p id="modalContent"></p>
+
+<button class="close-btn" onclick="closeModal()">
+CLOSE
+</button>
+
+</div>
+
+<footer>
+🌌 SPACE TRAVELER GENERAL — INTERGALACTIC LEARNING SYSTEM
+</footer>
+
+<script>
+
+/* STARS */
+
+const starsContainer = document.getElementById("stars");
+
+for(let i=0;i<300;i++){
+
+    const star = document.createElement("div");
+
+    star.className = "star";
+
+    star.style.top = Math.random()*100 + "%";
+    star.style.left = Math.random()*100 + "%";
+
+    star.style.animationDuration =
+    (Math.random()*3 + 2) + "s";
+
+    starsContainer.appendChild(star);
+}
+
+/* SUBJECTS */
+
+const subjects = [
+
+{
+name:"ENGLISH",
+icon:"🛸",
+description:"Master universal communication across galaxies and civilizations."
+},
+
+{
+name:"MATHS",
+icon:"🌌",
+description:"Develop advanced logical and numerical intelligence systems."
+},
+
+{
+name:"CHEMISTRY",
+icon:"🧪",
+description:"Understand molecular structures and cosmic reactions."
+},
+
+{
+name:"PHYSICS",
+icon:"⚛️",
+description:"Explore gravity, energy and the laws of the universe."
+},
+
+{
+name:"CALCULUS I",
+icon:"📈",
+description:"Learn limits, continuity and foundational differential calculus."
+},
+
+{
+name:"CALCULUS II",
+icon:"🌠",
+description:"Master integration techniques and infinite series."
+},
+
+{
+name:"CALCULUS III",
+icon:"🪐",
+description:"Study multivariable calculus and vector systems."
+},
+
+{
+name:"CALCULUS IV",
+icon:"🚀",
+description:"Explore advanced differential equations and transformations."
+},
+
+{
+name:"ORDINARY DIFFERENTIAL EQUATIONS",
+icon:"📡",
+description:"Analyze dynamic systems modeled by ordinary differential equations."
+},
+
+{
+name:"PARTIAL DIFFERENTIAL EQUATIONS",
+icon:"🌍",
+description:"Study heat, waves and multidimensional dynamic systems."
+},
+
+{
+name:"COMPLEX ANALYSIS",
+icon:"🌀",
+description:"Explore functions of complex variables and fractal structures."
+},
+
+{
+name:"ANALYTIC GEOMETRY",
+icon:"📐",
+description:"Understand geometric structures through algebraic systems."
+},
+
+{
+name:"DIFFERENTIAL GEOMETRY",
+icon:"🌐",
+description:"Study curves, surfaces and geometric manifolds in space."
+}
+
+];
+
+const container = document.getElementById("subjects");
+
+subjects.forEach(subject=>{
+
+    let lessons = "";
+
+    for(let i=1;i<=50;i++){
+
+        lessons += `
+        <button class="lesson-btn"
+        onclick="openLesson('${subject.name}', ${i})">
+        L${i}
+        </button>
+        `;
+    }
+
+    const card = document.createElement("div");
+
+    card.className = "card";
+
+    card.innerHTML = `
+
+    <div class="space-icon">
+    ${subject.icon}
+    </div>
+
+    <h2>${subject.name}</h2>
+
+    <p>${subject.description}</p>
+
+    <div class="lesson-container">
+    ${lessons}
+    </div>
+    `;
+
+    container.appendChild(card);
+});
+
+/* OPEN LESSON */
+
+function openLesson(subject, lesson){
+
+    document.getElementById("modal").style.display = "block";
+
+    document.getElementById("modalTitle").innerHTML =
+    `${subject} — LESSON ${lesson}`;
+
+    document.getElementById("modalContent").innerHTML = `
+
+    🚀 Welcome Space Traveler...
+
+    <br><br>
+
+    You are now entering Lesson ${lesson} of ${subject}.
+
+    <br><br>
+
+    This knowledge will help you survive among advanced civilizations,
+    interstellar systems and artificial intelligence entities.
+
+    <br><br>
+
+    🌌 Knowledge is the ultimate cosmic power.
+    `;
+}
+
+/* CLOSE */
+
+function closeModal(){
+
+    document.getElementById("modal").style.display = "none";
+}
+
+/* START MISSION */
+
+function startMission(){
+
+    document.getElementById("modal").style.display = "block";
+
+    document.getElementById("modalTitle").innerHTML =
+    "🚀 SPACE MISSION ACTIVATED";
+
+    document.getElementById("modalContent").innerHTML = `
+
+    Welcome Traveler...
+
+    <br><br>
+
+    Your intergalactic mission has begun.
+
+    <br><br>
+
+    To survive across galaxies you must combine:
+
+    <br><br>
+
+    ✅ Mathematics
+    <br>
+    ✅ Physics
+    <br>
+    ✅ Chemistry
+    <br>
+    ✅ Calculus
+    <br>
+    ✅ Complex Analysis
+    <br>
+    ✅ Differential Equations
+    <br>
+    ✅ Geometry
+    <br>
+    ✅ Universal English
+
+    <br><br>
+
+    🌌 The universe rewards intelligent minds.
+    `;
+}
+
+</script>
 
 </body>
 </html>
